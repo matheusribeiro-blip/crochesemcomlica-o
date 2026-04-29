@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oferta Especial – Biblioteca de Padrões Exclusivos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bege:       #fdf6ee;
+      --bege-dark:  #f4e9d8;
+      --marrom:     #7a4f2e;
+      --marrom-dark:#5c3519;
+      --verde:      #2e7d4f;
+      --verde-hover:#235f3c;
+      --verde-light:#eaf5ee;
+      --cinza:      #8a8a8a;
+      --cinza-bg:   #efefef;
+      --texto:      #2d2d2d;
+      --radius:     14px;
+    }
+
+    body {
+      background: var(--bege);
+      font-family: 'Lato', sans-serif;
+      color: var(--texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── TOPO ── */
+    .topo {
+      width: 100%;
+      background: var(--marrom);
+      text-align: center;
+      padding: 10px 16px;
+    }
+    .topo p {
+      color: #fff;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .topo strong { color: #f9d88a; }
+
+    /* ── CONTAINER ── */
+    .container {
+      width: 100%;
+      max-width: 540px;
+      padding: 32px 20px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    /* ── BADGE ── */
+    .badge {
+      background: #f9d88a;
+      color: var(--marrom-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+    }
+
+    /* ── TÍTULO ── */
+    .titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 6vw, 2.1rem);
+      font-weight: 900;
+      color: var(--marrom-dark);
+      text-align: center;
+      line-height: 1.25;
+    }
+    .titulo span { color: var(--verde); }
+
+    .subtitulo {
+      font-size: 1.05rem;
+      color: #5a4033;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .subtitulo strong { color: var(--marrom-dark); }
+
+    /* ── IMAGEM ── */
+    .img-wrap {
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(90,50,20,0.13);
+    }
+    .img-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--marrom), var(--verde));
+      border-radius: 4px;
+    }
+
+    /* ── BENEFÍCIOS ── */
+    .beneficios-box {
+      width: 100%;
+      background: #fff;
+      border: 1.5px solid var(--bege-dark);
+      border-radius: var(--radius);
+      padding: 22px 22px 22px 18px;
+      box-shadow: 0 2px 12px rgba(90,50,20,0.06);
+    }
+    .beneficios-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--marrom-dark);
+      margin-bottom: 14px;
+    }
+    .beneficios-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .beneficios-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: #3d2b1a;
+      line-height: 1.45;
+    }
+    .icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--verde-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .icon svg { width: 12px; height: 12px; }
+
+    /* ── PREÇO ── */
+    .preco-box {
+      width: 100%;
+      background: var(--verde-light);
+      border: 2px solid #a8d5b8;
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .preco-de {
+      font-size: 0.85rem;
+      color: var(--cinza);
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+    .preco-por {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--verde);
+      line-height: 1;
+    }
+    .preco-label {
+      font-size: 0.8rem;
+      color: #4a7a5a;
+      margin-top: 4px;
+    }
+
+    /* ── BOTÃO PRINCIPAL ── */
+    .btn-sim {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #2e9e5e 0%, var(--verde) 100%);
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 18px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      box-shadow: 0 6px 22px rgba(46,125,79,0.38);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-sim::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.07);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .btn-sim:hover { background: linear-gradient(135deg, #25865000, var(--verde-hover)); box-shadow: 0 8px 28px rgba(46,125,79,0.45); transform: translateY(-1px); }
+    .btn-sim:hover::after { opacity: 1; }
+    .btn-sim:active { transform: translateY(0); }
+
+    .btn-sim .emoji { font-size: 1.3rem; vertical-align: middle; margin-right: 4px; }
+
+    .btn-sim-sub {
+      font-size: 0.78rem;
+      font-weight: 400;
+      opacity: 0.88;
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* ── GARANTIA ── */
+    .garantia {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1.5px solid var(--bege-dark);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      width: 100%;
+    }
+    .garantia svg { flex-shrink: 0; width: 36px; height: 36px; }
+    .garantia p { font-size: 0.82rem; color: #5a4033; line-height: 1.4; }
+    .garantia strong { color: var(--marrom-dark); }
+
+    /* ── BOTÃO SECUNDÁRIO ── */
+    .btn-nao {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--cinza);
+      text-align: center;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .btn-nao:hover { color: #555; }
+
+    /* ── RODAPÉ ── */
+    .rodape {
+      width: 100%;
+      text-align: center;
+      padding: 18px 16px 28px;
+      font-size: 0.72rem;
+      color: #aaa;
+    }
+
+    /* ── PULSE no botão ── */
+    @keyframes pulse-green {
+      0%   { box-shadow: 0 6px 22px rgba(46,125,79,0.38); }
+      50%  { box-shadow: 0 8px 32px rgba(46,125,79,0.60); }
+      100% { box-shadow: 0 6px 22px rgba(46,125,79,0.38); }
+    }
+    .btn-sim { animation: pulse-green 2.4s ease-in-out infinite; }
+    .btn-sim:hover { animation: none; }
+
+    /* ── FADE-IN ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .container > * {
+      animation: fadeUp 0.5s ease both;
+    }
+    .container > *:nth-child(1) { animation-delay: 0.05s; }
+    .container > *:nth-child(2) { animation-delay: 0.12s; }
+    .container > *:nth-child(3) { animation-delay: 0.18s; }
+    .container > *:nth-child(4) { animation-delay: 0.24s; }
+    .container > *:nth-child(5) { animation-delay: 0.30s; }
+    .container > *:nth-child(6) { animation-delay: 0.36s; }
+    .container > *:nth-child(7) { animation-delay: 0.42s; }
+    .container > *:nth-child(8) { animation-delay: 0.48s; }
+    .container > *:nth-child(9) { animation-delay: 0.54s; }
+    .container > *:nth-child(10) { animation-delay: 0.60s; }
+  </style>
+</head>
+<body>
+
+  <!-- TOPO -->
+  <div class="topo">
+    <p>⏳ Oferta exclusiva — disponível <strong>apenas agora</strong></p>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="container">
+
+    <span class="badge">🎁 Presente especial para você</span>
+
+    <h1 class="titulo">
+      Antes de liberar seu acesso…<br>
+      <span>você merece esse presente</span>
+    </h1>
+
+    <p class="subtitulo">
+      Adquira agora a <strong>Biblioteca de Padrões Exclusivos</strong><br>
+      com <strong>50 moldes de crochê prontos para imprimir</strong><br>
+      por um preço que não vai se repetir.
+    </p>
+
+    <!-- IMAGEM -->
+    <div class="img-wrap">
+      <img src="images/upsell1-biblioteca.webp" alt="Biblioteca de Padrões Exclusivos" style="max-width:100%; border-radius:16px;">
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- BENEFÍCIOS -->
+    <div class="beneficios-box">
+      <h3>O que está incluso na biblioteca:</h3>
+      <ul>
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9 10 3" stroke="#2e7d4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><strong>50 moldes exclusivos</strong> organizados por nível — do iniciante ao avançado</span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9 10 3" stroke="#2e7d4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>Arquivos em <strong>PDF prontos para imprimir</strong> em casa com qualidade profissional</span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9 10 3" stroke="#2e7d4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>Padrões para <strong>diferentes peças</strong>: amigurumis, acessórios, decoração e vestuário</span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9 10 3" stroke="#2e7d4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><strong>Gráficos detalhados</strong> com legenda e instruções passo a passo</span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9 10 3" stroke="#2e7d4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>Acesso <strong>vitalício</strong> com download imediato após a compra</span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9 10 3" stroke="#2e7d4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>Moldes <strong>nunca vendidos separadamente</strong> — só nesta oferta especial</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- PREÇO -->
+    <div class="preco-box">
+      <p class="preco-de">De R$ 49,90</p>
+      <p class="preco-por">R$ 29,90</p>
+      <p class="preco-label">pagamento único · acesso imediato</p>
+    </div>
+
+    <!-- BOTÃO PRINCIPAL -->
+    <a href="[LINK_KIRVANO]" class="btn-sim">
+      <span class="emoji">✅</span> SIM! Quero por R$ 29,90
+      <span class="btn-sim-sub">Clique aqui e garanta agora mesmo</span>
+    </a>
+
+    <!-- GARANTIA -->
+    <div class="garantia">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="17" stroke="#2e7d4f" stroke-width="2"/>
+        <path d="M18 9l2.6 5.3 5.9.86-4.25 4.14 1 5.86L18 22.77l-5.25 2.39 1-5.86-4.25-4.14 5.9-.86L18 9z" fill="#2e7d4f" opacity=".18"/>
+        <path d="M12.5 18.5l4 4 7-8" stroke="#2e7d4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p><strong>Compra 100% segura.</strong> Se não gostar, devolvemos seu dinheiro em até 7 dias — sem perguntas.</p>
+    </div>
+
+    <!-- BOTÃO SECUNDÁRIO -->
+    <a href="[LINK_DOWNSEL]" class="btn-nao">
+      Não, obrigada — ir para a próxima oferta
+    </a>
+
+  </div>
+
+  <!-- RODAPÉ -->
+  <div class="rodape">
+    © Todos os direitos reservados · Produto digital · Entrega imediata por e-mail
+  </div>
+
+</body>
+</html>

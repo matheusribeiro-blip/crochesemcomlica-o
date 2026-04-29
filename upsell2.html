@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oferta Especial – Calculadora de Preços Mágica para Crochê</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bege:        #fdf6ee;
+      --bege-dark:   #f2e5d0;
+      --marrom:      #7a4f2e;
+      --marrom-dark: #5c3519;
+      --verde:       #2e7d4f;
+      --verde-hover: #235f3c;
+      --verde-light: #eaf5ee;
+      --cinza:       #8a8a8a;
+      --texto:       #2d2d2d;
+      --radius:      14px;
+      --amarelo:     #f9d88a;
+      --laranja:     #e07b2a;
+    }
+
+    body {
+      background: var(--bege);
+      font-family: 'Lato', sans-serif;
+      color: var(--texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── TOPO ── */
+    .topo {
+      width: 100%;
+      background: #3b1f0a;
+      padding: 10px 16px;
+      text-align: center;
+    }
+    .topo p {
+      color: var(--amarelo);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .topo span { color: #fff; font-weight: 400; }
+
+    /* ── CONTAINER ── */
+    .container {
+      width: 100%;
+      max-width: 540px;
+      padding: 30px 20px 52px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff3cd;
+      border: 1.5px solid #e8c98a;
+      color: var(--marrom-dark);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+    }
+
+    /* ── PROBLEMA ── */
+    .problema-box {
+      width: 100%;
+      background: #fff8f0;
+      border-left: 4px solid var(--laranja);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 14px 16px;
+    }
+    .problema-box p {
+      font-size: 0.95rem;
+      color: #5a3010;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .problema-box p strong {
+      font-style: normal;
+      color: var(--laranja);
+    }
+
+    /* ── TÍTULO ── */
+    .titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 6vw, 2.1rem);
+      font-weight: 900;
+      color: var(--marrom-dark);
+      text-align: center;
+      line-height: 1.25;
+    }
+    .titulo em {
+      font-style: normal;
+      color: var(--verde);
+    }
+
+    .subtitulo {
+      font-size: 1rem;
+      color: #5a4033;
+      text-align: center;
+      line-height: 1.55;
+    }
+    .subtitulo strong { color: var(--marrom-dark); }
+
+    /* ── IMAGEM ── */
+    .img-wrap {
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(90,50,20,0.13);
+    }
+    .img-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--laranja), var(--verde));
+      border-radius: 4px;
+    }
+
+    /* ── COMO FUNCIONA ── */
+    .como-box {
+      width: 100%;
+      background: #fff;
+      border: 1.5px solid var(--bege-dark);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 14px rgba(90,50,20,0.07);
+    }
+    .como-header {
+      background: var(--marrom-dark);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .como-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: #fff;
+      font-weight: 700;
+    }
+    .como-body {
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Passos */
+    .passo {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .passo-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--verde);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .passo-text strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--marrom-dark);
+      margin-bottom: 2px;
+    }
+    .passo-text span {
+      font-size: 0.84rem;
+      color: #5a4033;
+      line-height: 1.4;
+    }
+    .seta {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--verde);
+      line-height: 1;
+    }
+
+    /* ── BENEFÍCIOS ── */
+    .benef-box {
+      width: 100%;
+      background: #fff;
+      border: 1.5px solid var(--bege-dark);
+      border-radius: var(--radius);
+      padding: 18px 18px 20px;
+      box-shadow: 0 2px 14px rgba(90,50,20,0.06);
+    }
+    .benef-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: var(--marrom-dark);
+      margin-bottom: 14px;
+    }
+    .benef-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .benef-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.93rem;
+      color: #3d2b1a;
+      line-height: 1.45;
+    }
+    .benef-emoji { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+
+    /* ── ESCASSEZ ── */
+    .escassez-box {
+      width: 100%;
+      background: #fff8e1;
+      border: 2px dashed #e8c98a;
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .escassez-box p {
+      font-size: 0.87rem;
+      color: #7a4f2e;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .escassez-box p span { font-weight: 400; color: #5a4033; }
+
+    /* ── PREÇO ── */
+    .preco-box {
+      width: 100%;
+      background: var(--verde-light);
+      border: 2px solid #a8d5b8;
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .preco-de {
+      font-size: 0.85rem;
+      color: var(--cinza);
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+    .preco-por {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--verde);
+      line-height: 1;
+    }
+    .preco-label {
+      font-size: 0.78rem;
+      color: #4a7a5a;
+      margin-top: 5px;
+    }
+    .economia {
+      display: inline-block;
+      margin-top: 8px;
+      background: var(--verde);
+      color: #fff;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 99px;
+    }
+
+    /* ── BOTÃO PRINCIPAL ── */
+    .btn-sim {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #2e9e5e 0%, var(--verde) 100%);
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 18px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      box-shadow: 0 6px 22px rgba(46,125,79,0.38);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-sim:hover {
+      background: linear-gradient(135deg, #258650, var(--verde-hover));
+      box-shadow: 0 8px 28px rgba(46,125,79,0.45);
+      transform: translateY(-1px);
+    }
+    .btn-sim:active { transform: translateY(0); }
+    .btn-sim .emoji { font-size: 1.2rem; vertical-align: middle; margin-right: 4px; }
+    .btn-sim-sub {
+      font-size: 0.76rem;
+      font-weight: 400;
+      opacity: 0.88;
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* ── GARANTIA ── */
+    .garantia {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1.5px solid var(--bege-dark);
+      border-radius: var(--radius);
+      padding: 13px 15px;
+      width: 100%;
+    }
+    .garantia svg { flex-shrink: 0; width: 34px; height: 34px; }
+    .garantia p { font-size: 0.8rem; color: #5a4033; line-height: 1.45; }
+    .garantia strong { color: var(--marrom-dark); }
+
+    /* ── BOTÃO SECUNDÁRIO ── */
+    .btn-nao {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--cinza);
+      text-align: center;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .btn-nao:hover { color: #555; }
+
+    /* ── RODAPÉ ── */
+    .rodape {
+      width: 100%;
+      text-align: center;
+      padding: 16px 16px 28px;
+      font-size: 0.7rem;
+      color: #bbb;
+    }
+
+    /* ── ANIMAÇÕES ── */
+    @keyframes pulse-green {
+      0%   { box-shadow: 0 6px 22px rgba(46,125,79,0.38); }
+      50%  { box-shadow: 0 8px 34px rgba(46,125,79,0.58); }
+      100% { box-shadow: 0 6px 22px rgba(46,125,79,0.38); }
+    }
+    .btn-sim { animation: pulse-green 2.4s ease-in-out infinite; }
+    .btn-sim:hover { animation: none; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .container > * { animation: fadeUp 0.5s ease both; }
+    .container > *:nth-child(1)  { animation-delay: 0.04s; }
+    .container > *:nth-child(2)  { animation-delay: 0.10s; }
+    .container > *:nth-child(3)  { animation-delay: 0.16s; }
+    .container > *:nth-child(4)  { animation-delay: 0.22s; }
+    .container > *:nth-child(5)  { animation-delay: 0.28s; }
+    .container > *:nth-child(6)  { animation-delay: 0.34s; }
+    .container > *:nth-child(7)  { animation-delay: 0.40s; }
+    .container > *:nth-child(8)  { animation-delay: 0.46s; }
+    .container > *:nth-child(9)  { animation-delay: 0.52s; }
+    .container > *:nth-child(10) { animation-delay: 0.58s; }
+    .container > *:nth-child(11) { animation-delay: 0.64s; }
+    .container > *:nth-child(12) { animation-delay: 0.70s; }
+  </style>
+</head>
+<body>
+
+  <!-- TOPO -->
+  <div class="topo">
+    <p>⏳ Oferta especial pós-compra — <span>válida apenas agora</span></p>
+  </div>
+
+  <div class="container">
+
+    <!-- BADGE -->
+    <span class="badge">📊 Ferramenta exclusiva para artesãs</span>
+
+    <!-- PROBLEMA -->
+    <div class="problema-box">
+      <p><strong>Quanto cobrar por cada peça?</strong> Essa é a dúvida que mais atrapalha artesãs — e que faz muita gente vender no prejuízo sem perceber.</p>
+    </div>
+
+    <!-- TÍTULO -->
+    <h1 class="titulo">
+      Você sabe quanto cobrar<br>
+      por <em>cada peça?</em>
+    </h1>
+
+    <p class="subtitulo">
+      Essa planilha faz o <strong>cálculo automático</strong> para você —<br>
+      sem fórmulas, sem complicação.
+    </p>
+
+    <!-- IMAGEM -->
+    <div class="img-wrap">
+      <img src="images/upsell2-calculadora.webp" alt="Calculadora de Preços Mágica" style="max-width:100%; border-radius:16px;">
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- COMO FUNCIONA -->
+    <div class="como-box">
+      <div class="como-header">
+        <span style="font-size:1rem;">⚙️</span>
+        <h3>Como funciona em 3 passos</h3>
+      </div>
+      <div class="como-body">
+        <div class="passo">
+          <span class="passo-num">1</span>
+          <div class="passo-text">
+            <strong>Insira os materiais usados</strong>
+            <span>Fios, agulhas, aviamentos — qualquer custo da peça</span>
+          </div>
+        </div>
+        <div class="seta">↓</div>
+        <div class="passo">
+          <span class="passo-num">2</span>
+          <div class="passo-text">
+            <strong>Informe o tempo gasto</strong>
+            <span>Sua hora de trabalho vale muito — e a calculadora sabe disso</span>
+          </div>
+        </div>
+        <div class="seta">↓</div>
+        <div class="passo">
+          <span class="passo-num">3</span>
+          <div class="passo-text">
+            <strong>Receba o preço ideal automaticamente</strong>
+            <span>Com margem de lucro garantida, pronta para cobrar com confiança</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BENEFÍCIOS -->
+    <div class="benef-box">
+      <h3>Por que você vai amar essa planilha:</h3>
+      <ul>
+        <li>
+          <span class="benef-emoji">✅</span>
+          <span>Insira os <strong>materiais + tempo gasto</strong> em segundos</span>
+        </li>
+        <li>
+          <span class="benef-emoji">✅</span>
+          <span>Ela calcula o <strong>preço ideal automaticamente</strong> — sem erro</span>
+        </li>
+        <li>
+          <span class="benef-emoji">✅</span>
+          <span>Garanta <strong>margem de lucro SEMPRE</strong> em cada venda</span>
+        </li>
+        <li>
+          <span class="benef-emoji">✅</span>
+          <span>Formato <strong>Excel / Google Sheets</strong> — fácil de usar em qualquer dispositivo</span>
+        </li>
+        <li>
+          <span class="benef-emoji">✅</span>
+          <span><strong>Atualize quantas vezes quiser</strong> conforme seus custos mudarem</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ESCASSEZ -->
+    <div class="escassez-box">
+      <p>📊 <span>De R$ 47,00 por apenas</span> R$ 19,90 hoje</p>
+      <p>⏳ <span>Oferta especial pós-compra —</span> válida apenas agora</p>
+    </div>
+
+    <!-- PREÇO -->
+    <div class="preco-box">
+      <p class="preco-de">De R$ 47,00</p>
+      <p class="preco-por">R$ 19,90</p>
+      <p class="preco-label">pagamento único · acesso imediato</p>
+      <span class="economia">você economiza R$ 27,10</span>
+    </div>
+
+    <!-- BOTÃO PRINCIPAL -->
+    <a href="[LINK_KIRVANO_UPSELL2]" class="btn-sim">
+      <span class="emoji">✅</span> Quero a Calculadora por R$ 19,90
+      <span class="btn-sim-sub">Clique aqui e garanta agora mesmo</span>
+    </a>
+
+    <!-- GARANTIA -->
+    <div class="garantia">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="17" stroke="#2e7d4f" stroke-width="2"/>
+        <path d="M12.5 18.5l4 4 7-8" stroke="#2e7d4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p><strong>Compra 100% segura.</strong> Garantia de 7 dias — se não gostar, devolvemos seu dinheiro sem perguntas.</p>
+    </div>
+
+    <!-- BOTÃO SECUNDÁRIO -->
+    <a href="[LINK_DOWNSEL2]" class="btn-nao">
+      Não, obrigada — ir para a próxima oferta
+    </a>
+
+  </div>
+
+  <!-- RODAPÉ -->
+  <div class="rodape">
+    © Todos os direitos reservados · Produto digital · Entrega imediata por e-mail
+  </div>
+
+</body>
+</html>
